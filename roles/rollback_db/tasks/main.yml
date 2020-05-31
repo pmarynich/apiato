@@ -1,0 +1,5 @@
+---
+- name: Restore DB
+  become: yes
+  become_user: postgres
+  command: psql -d default -f ~/default.sql

@@ -1,0 +1,30 @@
+---
+- name: db_server
+  hosts: db_server
+  remote_user: root
+  become: yes
+  become_method: sudo
+
+  roles:
+   - selinux
+   - postgres_install
+   - postgres_setting
+
+- name: app_server
+  hosts: app_server
+  remote_user: root
+  become: yes
+  become_method: sudo
+
+  roles:
+    - selinux
+    - epel
+    - yum-utils
+    - remi_repo
+    - php_stable
+    - nginx
+    - php
+    - redis
+    - git
+    - beanstalkd
+    - apiato

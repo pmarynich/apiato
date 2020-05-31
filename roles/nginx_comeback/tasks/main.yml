@@ -1,0 +1,11 @@
+---
+- name: Copy Nginx basic php configuration
+  copy:
+    src: /root/ansible/files/nginx/default.conf
+    dest: /etc/nginx/conf.d/default.conf
+    remote_src: no
+
+- name: Restart nginx
+  systemd:
+    name: nginx
+    state: reloaded

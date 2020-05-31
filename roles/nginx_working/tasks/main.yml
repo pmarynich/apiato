@@ -1,0 +1,32 @@
+---
+- name: Copy temp config
+  copy:
+    src: /root/ansible/files/nginx_working/default.conf
+    dest: /etc/nginx/conf.d/default.conf
+
+- name: Set directory for static
+  file:
+    path: /var/www/working
+    state: directory
+    owner: root
+    group: root
+
+- name: Copy static info
+  copy:
+    src: /root/ansible/files/nginx_working/index.html
+    dest: /var/www/working
+    owner: root
+    group: root
+    force: yes
+
+- name: Test nginx conf
+  command: nginx -t
+
+- name: Restart nginx
+  systemd:
+    name: nginx
+    state: reloaded
+    enabled: yes
+
+- name: Timeout for check static
+  command: sleep 30s

@@ -1,0 +1,7 @@
+---
+- name: enable beanstalkd
+  service:
+    name: beanstalkd
+    state: started
+    enabled: yes
+

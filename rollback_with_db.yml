@@ -1,0 +1,22 @@
+---
+
+- name: db_server
+  hosts: db_server
+  remote_user: root
+  become: yes
+  become_user: postgres
+  become_method: sudo
+
+  roles:
+  - rollback_db
+
+- name: app_server
+  hosts: app_server
+  remote_user: root
+  become: yes
+  become_method: sudo
+
+  roles:
+  - nginx_working
+  - rollback
+  - nginx_comeback

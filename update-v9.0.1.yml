@@ -1,0 +1,12 @@
+---
+- name: app_server
+  hosts: app_server
+  remote_user: root
+  become: yes
+  become_method: sudo
+
+  roles:
+  - backup_apiato
+  - nginx_working
+  - apiato-v9.0.1
+  - nginx_comeback

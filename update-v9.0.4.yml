@@ -1,0 +1,21 @@
+---
+- name: db_server
+  hosts: db_server
+  remote_user: root
+  become: yes
+  become_method: sudo
+
+  roles:
+  - backup_db
+
+- name: app_server
+  hosts: app_server
+  remote_user: root
+  become: yes
+  become_method: sudo
+
+  roles:
+  - backup_apiato
+  - nginx_working
+  - apiato-v9.0.4
+  - nginx_comeback

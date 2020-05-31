@@ -1,0 +1,39 @@
+---
+- name: Install postgress repo
+  yum:
+    name: https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+
+- name: Install postgres
+  yum:
+    name: postgresql11
+
+- name: Install postgress server packages
+  yum:
+    name: postgresql11-server
+
+- name: Initialize database
+  shell: /usr/pgsql-11/bin/postgresql-11-setup initdb
+
+- name: Start and enable postgres
+  systemd:
+    name: postgresql-11
+    state: started
+    enabled: yes
+  notify: restart postgres
+
+- name: Copy pg_hba.conf
+  copy:
+    src: /root/ansible/files/postgres/pg_hba.conf
+    dest: /var/lib/pgsql/11/data/pg_hba.conf
+
+- name: Copy postgresql.conf
+  copy:
+    src: /root/ansible/files/postgres/postgresql.conf
+    dest: /var/lib/pgsql/11/data/postgresql.conf
+
+- firewalld:
+    zone: public
+    port: 5432/tcp
+    permanent: yes
+    state: enabled
+  notify: restart firewalld

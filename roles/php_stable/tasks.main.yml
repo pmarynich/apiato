@@ -1,0 +1,6 @@
+---
+- name: Disable old php version
+  shell:  "yum-config-manager --disable remi-php54"
+
+- name: Enable actual php version
+  shell: "yum-config-manager --enable remi-php73"

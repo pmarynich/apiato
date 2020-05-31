@@ -1,0 +1,7 @@
+---
+- name: Backup DB
+  become_user: postgres
+  postgresql_db:
+    name: default
+    state: dump
+    target: ~/default.sql

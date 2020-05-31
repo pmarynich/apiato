@@ -1,0 +1,49 @@
+---
+- name: Install dnf
+  yum:
+    name: dnf
+
+- name: Install python3 with packages
+  dnf:
+    name: ['python3', 'python3-pip', 'gcc', 'postgresql-devel', 'postgresql-libs', 'python3-devel']
+
+- name: Update pip
+  shell: python3 -m pip install --upgrade pip
+
+- name: Install psycopg2
+  shell: PATH=$PATH://usr/pgsql-11/bin/ pip3 install psycopg2
+
+- name: Set python3.6 as default
+  shell: ln -fs /usr/bin/python3.6 /usr/bin/python
+
+- name: Create default user
+  postgresql_user:
+    name: default
+    password: secret
+  become: true
+  become_method: "su"
+  become_user: "postgres"
+
+- name: Create default database
+  postgresql_db:
+    name: default
+  become: true
+  become_method: "su"
+  become_user: "postgres"
+
+- name: Grant privs
+  postgresql_privs:
+    db: default
+    state: absent
+    privs: ALL
+    objs: ALL_IN_SCHEMA
+    role: default
+  become: true
+  become_method: "su"
+  become_user: "postgres"
+
+- name: Set default pg_dump
+  command: ln -s /usr/pgsql-11/bin/pg_dump /usr/bin/pg_dump --force
+
+- name: Set default pg_restore
+  command: ln -s /usr/pgsql-11/bin/pg_restore /usr/bin/pg_restore --force

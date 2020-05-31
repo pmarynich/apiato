@@ -1,0 +1,11 @@
+---
+- name: app_server
+  hosts: app_server
+  remote_user: root
+  become: yes
+  become_method: sudo
+
+  roles:
+  - nginx_working
+  - rollback
+  - nginx_comeback

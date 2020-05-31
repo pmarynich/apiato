@@ -1,0 +1,5 @@
+---
+- name: Add yum-utils
+  yum:
+    name: yum-utils
+

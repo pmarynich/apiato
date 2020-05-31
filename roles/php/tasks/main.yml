@@ -1,0 +1,22 @@
+---
+- name: Install php-fpm and deps
+  yum:
+    name: ['php', 'php-cli', 'php-fpm', 'php-zip', 'php-devel', 'php-gd', 'php-mcrypt', 'php-mbstring', 'php-curl', 'php-xml', 'php-pear', 'php-bcmath', 'php-json', 'php-intl', 'php-pgsql', 'php-pdo_pgsql']
+
+- name: Copy php-fpm configuration
+  copy:
+    src: /root/ansible/files/php-fpm/www.conf
+    dest: /etc/php-fpm.d/
+    force: yes
+    owner: root
+    group: root
+  become: true
+
+- name: Start php-fpm
+  systemd:
+    name: php-fpm
+    state: started
+    enabled: yes
+  notify: restart php-fpm
+
+  
