@@ -6,6 +6,7 @@
   become: yes
   become_user: postgres
   become_method: sudo
+  gather_facts: false
 
   roles:
   - rollback_db
@@ -15,6 +16,7 @@
   remote_user: root
   become: yes
   become_method: sudo
+  gather_facts: false
 
   roles:
   - nginx_working

@@ -1,6 +1,6 @@
 ---
 - name: Copy Nginx repo configuration
-  template: src=/root/ansible/files/nginx/nginx.repo dest=/etc/yum.repos.d/nginx.repo
+  template: src=/root/apiato_ansible/files/nginx/nginx.repo dest=/etc/yum.repos.d/nginx.repo
 
 - name: Enable Nginx repo
   command: yum-config-manager --enable nginx-stable
@@ -10,7 +10,7 @@
 
 - name: Copy Nginx configuration
   copy:
-    src: /root/ansible/files/nginx/default.conf
+    src: /root/apiato_ansible/files/nginx/default.conf
     dest: /etc/nginx/conf.d/default.conf
     remote_src: no
   notify: restart nginx

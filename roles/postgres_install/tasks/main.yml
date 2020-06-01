@@ -23,12 +23,12 @@
 
 - name: Copy pg_hba.conf
   copy:
-    src: /root/ansible/files/postgres/pg_hba.conf
+    src: /root/apiato_ansible/files/postgres/pg_hba.conf
     dest: /var/lib/pgsql/11/data/pg_hba.conf
 
 - name: Copy postgresql.conf
   copy:
-    src: /root/ansible/files/postgres/postgresql.conf
+    src: /root/apiato_ansible/files/postgres/postgresql.conf
     dest: /var/lib/pgsql/11/data/postgresql.conf
 
 - name: Add port 5432 to firewall

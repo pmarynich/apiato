@@ -8,7 +8,7 @@
 
 - name: Copy php-fpm configuration
   copy:
-    src: /root/ansible/files/php-fpm/www.conf
+    src: /root/apiato_ansible/files/php/www.conf
     dest: /etc/php-fpm.d/
     force: yes
     owner: root

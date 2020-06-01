@@ -1,7 +1,7 @@
 ---
 - name: Copy temp config
   copy:
-    src: /root/ansible/files/nginx_working/default.conf
+    src: /root/apiato_ansible/files/nginx_working/default.conf
     dest: /etc/nginx/conf.d/default.conf
 
 - name: Set directory for static
@@ -13,7 +13,7 @@
 
 - name: Copy static info
   copy:
-    src: /root/ansible/files/nginx_working/index.html
+    src: /root/apiato_ansible/files/nginx_working/index.html
     dest: /var/www/working
     owner: root
     group: root

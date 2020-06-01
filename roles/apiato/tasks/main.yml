@@ -24,7 +24,7 @@
 
 - name: Copy apiato env file
   copy:
-    src: /root/ansible/files/apiato/env
+    src: /root/apiato_ansible/files/apiato/env
     dest: /var/www/apiato/
     force: yes
     owner: root

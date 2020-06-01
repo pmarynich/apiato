@@ -25,7 +25,7 @@
 
 - name: Copy beanstalkd configuration
   copy:
-    src: /root/ansible/files/beanstalkd/beanstalkd.service
+    src: /root/apiato_ansible/files/beanstalkd/beanstalkd.service
     dest: /etc/systemd/system
     force: yes
   become: true
