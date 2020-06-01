@@ -1,7 +1,10 @@
 ---
 - name: Install php-fpm and deps
   yum:
-    name: ['php', 'php-cli', 'php-fpm', 'php-zip', 'php-devel', 'php-gd', 'php-mcrypt', 'php-mbstring', 'php-curl', 'php-xml', 'php-pear', 'php-bcmath', 'php-json', 'php-intl', 'php-pgsql', 'php-pdo_pgsql']
+    name: ['php', 'php-cli', 'php-fpm', 'php-zip',
+    'php-devel', 'php-gd', 'php-mcrypt', 'php-mbstring',
+    'php-curl', 'php-xml', 'php-pear', 'php-bcmath',
+    'php-json', 'php-intl', 'php-pgsql', 'php-pdo_pgsql']
 
 - name: Copy php-fpm configuration
   copy:
@@ -18,5 +21,3 @@
     state: started
     enabled: yes
   notify: restart php-fpm
-
-  

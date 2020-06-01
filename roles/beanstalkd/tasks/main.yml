@@ -6,8 +6,7 @@
   git:
     repo: https://github.com/kr/beanstalkd
     dest: /root/beanstalkd
-    force: yes
-    recursive: yes
+  tags: skip_ansible_lint
 
 - name: Install beanstalkd
   make:
@@ -18,7 +17,7 @@
     src: /root/beanstalkd
     dest: /usr/bin/beanstalkd
     state: directory
-  
+
 - name: Make directory beantalkd
   file:
     path: /var/lib/beanstalkd

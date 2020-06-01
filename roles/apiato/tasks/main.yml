@@ -8,12 +8,20 @@
   yum:
     name: ['unzip', 'zip']
 
-- name: Unarchive
-  command: unzip /root/apiato-v9.0.0.zip -d /root/v9.0.0
+- name: Change owner apiato dir
+  file:
+    path: /var/www/apiato
+    state: directory
+    owner: nginx
+    group: nginx
+    recurse: yes
 
-- name: Pull
-  command: cp -r /root/v9.0.0/root/apiato-v9.0.0/ /var/www/apiato
-    
+- name: Unarchive
+  unarchive:
+    src: /root/apiato-v9.0.0.zip
+    dest: /var/www/apiato
+    remote_src: yes
+
 - name: Copy apiato env file
   copy:
     src: /root/ansible/files/apiato/env
@@ -25,14 +33,6 @@
 
 - name: Rename to .env
   command: cp /var/www/apiato/env /var/www/apiato/.env
-
-- name: Change owner apiato dir
-  file:
-    path: /var/www/apiato
-    state: directory
-    owner: nginx
-    group: nginx
-    recurse: yes
 
 - name: Change mode bootstrap
   file:

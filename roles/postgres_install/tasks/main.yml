@@ -12,7 +12,7 @@
     name: postgresql11-server
 
 - name: Initialize database
-  shell: /usr/pgsql-11/bin/postgresql-11-setup initdb
+  command: /usr/pgsql-11/bin/postgresql-11-setup initdb
 
 - name: Start and enable postgres
   systemd:
@@ -31,7 +31,8 @@
     src: /root/ansible/files/postgres/postgresql.conf
     dest: /var/lib/pgsql/11/data/postgresql.conf
 
-- firewalld:
+- name: Add port 5432 to firewall
+  firewalld:
     zone: public
     port: 5432/tcp
     permanent: yes

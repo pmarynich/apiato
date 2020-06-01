@@ -1,9 +1,9 @@
 ---
 - name: Enable remi
-  shell: yum-config-manager --enable remi
+  command: yum-config-manager --enable remi
 
 - name: Disable old php
-  shell: yum-config-manager --disable remi-php54
+  command: yum-config-manager --disable remi-php54
 
 - name: Enable actual php
-  shell: yum-config-manager --enable remi-php73
+  command: yum-config-manager --enable remi-php73

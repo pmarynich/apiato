@@ -1,5 +1,6 @@
 ---
 - name: Backup DB
+  become: yes
   become_user: postgres
   postgresql_db:
     name: default
