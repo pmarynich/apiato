@@ -1,0 +1,21 @@
+---
+- name: Copy archive to app server
+  copy:
+    src: /root/apiato-v{{ apiato_version }}.zip
+    dest: /root/apiato-v{{ apiato_version }}.zip
+
+- name: Create dir for unarchive
+  file:
+    path: /var/www/apiato_update
+    state: directory
+    owner: root
+    group: root
+
+- name: Unarchive
+  unarchive:
+    src: /root/apiato-v{{ apiato_version }}.zip
+    dest: /var/www/apiato_update
+    remote_src: yes
+
+- name: Synchronization
+  command: rsync -r /var/www/apiato_update/ /var/www/apiato

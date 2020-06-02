@@ -1,0 +1,10 @@
+---
+- name: db_server
+  hosts: db_server
+  remote_user: root
+  become: yes
+  become_method: sudo
+  gather_facts: false
+
+  roles:
+  - backup_db

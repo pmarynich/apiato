@@ -19,5 +19,5 @@
   roles:
   - backup_apiato
   - nginx_working
-  - apiato-v9.0.4
+  - apiato_update
   - nginx_comeback

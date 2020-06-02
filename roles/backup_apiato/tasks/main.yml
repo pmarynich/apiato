@@ -1,3 +1,10 @@
 ---
-- name: Backup v9.0.0
-  command: cp -rf /var/www/apiato /var/www/apiato-v9.0.0
+- name: Directory for backing up
+  file:
+    path: /var/www/apiato_backup
+    state: directory
+    owner: root
+    group: root
+
+- name: Backup current version on app server
+  command: rsync -r /var/www/apiato/ /var/www/apiato_backup
