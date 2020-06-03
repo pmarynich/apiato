@@ -5,4 +5,4 @@
   postgresql_db:
     name: default
     state: dump
-    target: ~/default.sql
+    target: ~/default.zip

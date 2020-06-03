@@ -1,5 +1,5 @@
 ---
-- name: Rollback
+- name: Rollback code
   command: rsync -r /var/www/apiato_backup/ /var/www/apiato
 
 - name: Run php artisan migrate

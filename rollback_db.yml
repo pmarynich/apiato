@@ -1,10 +1,8 @@
 ---
-
 - name: db_server
   hosts: db_server
   remote_user: root
   become: yes
-  become_user: postgres
   become_method: sudo
   gather_facts: false
 
@@ -19,6 +17,4 @@
   gather_facts: false
 
   roles:
-  - nginx_working
-  - rollback
-  - nginx_comeback
+  - migrate
