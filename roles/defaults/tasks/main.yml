@@ -1,0 +1,42 @@
+- name: Copy temp config
+  copy:
+    src: /root/apiato_ansible/files/nginx_working/default.conf
+    dest: /etc/nginx/conf.d/default.conf
+
+- name: Copy Nginx.conf
+  copy:
+    src: /root/apiato_ansible/files/nginx/nginx.conf
+    dest: /etc/nginx/nginx.conf
+    remote_src: no
+
+- name: Copy static info
+  copy:
+    src: /root/apiato_ansible/files/nginx_working/index.html
+    dest: /var/www/working/
+    owner: root
+    group: root
+    force: yes
+
+- name: Copy php-fpm configuration
+  copy:
+    src: /root/apiato_ansible/files/php/www.conf
+    dest: /etc/php-fpm.d/
+    force: yes
+    owner: root
+    group: root
+  become: true
+
+- name: Test nginx
+  command: nginx -t
+
+- name: Restart nginx
+  systemd:
+    name: nginx
+    state: reloaded
+    enabled: yes
+
+- name: Restart php-fpm
+  systemd:
+    name: php-fpm
+    state: reloaded
+    enabled: yes

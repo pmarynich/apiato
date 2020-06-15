@@ -4,7 +4,7 @@
     name: ['php', 'php-cli', 'php-fpm', 'php-zip',
     'php-devel', 'php-gd', 'php-mcrypt', 'php-mbstring',
     'php-curl', 'php-xml', 'php-pear', 'php-bcmath',
-    'php-json', 'php-intl', 'php-pgsql', 'php-pdo_pgsql']
+    'php-json', 'php-intl', 'php-pgsql', 'php-pdo_pgsql', 'rsync']
 
 - name: Copy php-fpm configuration
   copy:
